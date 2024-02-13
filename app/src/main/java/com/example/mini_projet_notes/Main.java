@@ -1,8 +1,10 @@
 package com.example.mini_projet_notes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,14 +24,14 @@ public class Main extends AppCompatActivity {
         return true;
     }
 
-    public void nouvelleNote() {
-
-    }
-
 
 
     public void resetAction(MenuItem item) {
 
     }
 
+    public void nouvelleNote(View view) {
+        Intent intent = new Intent(this, creationNote.class);
+        startActivityForResult(intent, 1);
+    }
 }
