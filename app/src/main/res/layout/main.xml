@@ -3,7 +3,16 @@
                                                    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <com.example.mini_projet_notes.StyleNote
+            android:id="@+id/style_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:title="Mon Titre"
+            app:content="Contenu de la note"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_nouvelle_note"
