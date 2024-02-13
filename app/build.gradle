@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.mini_projet_notes'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.mini_projet_notes"
