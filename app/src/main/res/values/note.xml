@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StyleNote">
+        <attr name="Titre" format="string"/>
+        <attr name="Texte" format="string"/>
+    </declare-styleable>
+</resources>
