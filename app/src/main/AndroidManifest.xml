@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MINI_PROJET_NOTES">
 
-    <activity android:name=".Main"
+    <activity android:name="com.example.mini_projet_notes.Main"
               android:exported="true">
 
         <intent-filter>
