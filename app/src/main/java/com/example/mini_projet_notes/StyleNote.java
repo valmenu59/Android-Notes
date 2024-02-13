@@ -3,27 +3,42 @@ package com.example.mini_projet_notes;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class StyleNote extends FrameLayout {
+public class StyleNote extends LinearLayout {
+    private TextView textTitle;
+    private TextView textContent;
 
-    private String titre;
-    private String texte;
-
-    public StyleNote(@NonNull Context context) {
+    public StyleNote(Context context) {
         super(context);
+        init(context);
     }
 
-    public StyleNote(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public StyleNote(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
-    public StyleNote(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public StyleNote(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
     }
 
-    public StyleNote(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    private void init(Context context) {
+        inflate(context, R.layout.style_note, this);
+        textTitle = findViewById(R.id.text_title);
+        textContent = findViewById(R.id.text_content);
+    }
+
+    // Méthodes pour définir le titre et le contenu
+    public void setTitle(String title) {
+        textTitle.setText(title);
+    }
+
+    public void setContent(String content) {
+        textContent.setText(content);
     }
 }
