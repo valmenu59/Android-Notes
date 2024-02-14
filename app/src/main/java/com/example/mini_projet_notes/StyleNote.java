@@ -1,6 +1,7 @@
 package com.example.mini_projet_notes;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -12,25 +13,33 @@ public class StyleNote extends LinearLayout {
     private TextView textTitle;
     private TextView textContent;
 
-    public StyleNote(Context context) {
+
+    public StyleNote(Context context){
         super(context);
-        init(context);
     }
 
     public StyleNote(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init(context, attrs);
     }
 
     public StyleNote(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, attrs);
     }
 
-    private void init(Context context) {
+    public void init(Context context, AttributeSet attrs) {
         inflate(context, R.layout.style_note, this);
-        textTitle = findViewById(R.id.text_title);
-        textContent = findViewById(R.id.text_content);
+        textTitle = findViewById(R.id.title);
+        textContent = findViewById(R.id.content);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.StyleNote);
+        String titre = a.getString(R.styleable.StyleNote_Titre);
+        String texte = a.getString(R.styleable.StyleNote_Texte);
+        a.recycle();
+
+        textTitle.setText(titre);
+        textContent.setText(texte);
     }
 
     // Méthodes pour définir le titre et le contenu
@@ -40,5 +49,9 @@ public class StyleNote extends LinearLayout {
 
     public void setContent(String content) {
         textContent.setText(content);
+    }
+
+    public String getTitle(){
+        return String.valueOf(this.textTitle);
     }
 }
