@@ -5,16 +5,14 @@
                                                    android:layout_height="match_parent"
                                                    android:id="@+id/parent_main"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.example.mini_projet_notes.StyleNote
-            android:id="@+id/style_note"
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:Texte="Texte"
-            app:Titre="Titre"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
     />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

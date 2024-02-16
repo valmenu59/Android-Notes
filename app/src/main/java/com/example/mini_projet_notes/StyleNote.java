@@ -54,4 +54,8 @@ public class StyleNote extends LinearLayout {
     public String getTitle(){
         return String.valueOf(this.textTitle);
     }
+
+    public String getContent(){
+        return String.valueOf(this.textContent);
+    }
 }

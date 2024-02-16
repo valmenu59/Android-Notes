@@ -1,47 +1,55 @@
 package com.example.mini_projet_notes;
 
 import android.annotation.SuppressLint;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import org.w3c.dom.Attr;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private NoteAdapter adapter;
+    private List<StyleNote> noteList;
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ConstraintLayout parentLayout = findViewById(R.id.parent_main);
 
-        int marge = 10;
+        recyclerView = findViewById(R.id.main_list_view);
+        noteList = new ArrayList<>();
+        adapter = new NoteAdapter(noteList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        for (int i = 0; i < 10; i++) {
-            StyleNote note = new StyleNote(this, null);
-            note.setTitle("Titre de la note " + i);
-            note.setContent("Contenu de la note " + i);
-            note.setId(i);
-
-
-            ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-            );
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(parentLayout);
-            constraintSet.connect(note.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, marge);
+        StyleNote s1 = new StyleNote(this);
+        s1.init(this, null);
+        s1.setTitle("TITRE");
+        s1.setContent("CONTENT");
 
 
-            note.setLayoutParams(layoutParams);
-            note.
+        noteList.add(s1);
+        noteList.add(s1);
 
-            parentLayout.addView(note, layoutParams);
+        System.out.println(s1.getTitle());
 
-            marge += 50;
-        }
+        adapter.notifyDataSetChanged();
+
+
+
     }
 
     @Override
