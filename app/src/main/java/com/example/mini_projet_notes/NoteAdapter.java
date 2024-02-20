@@ -1,27 +1,35 @@
 package com.example.mini_projet_notes;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     private List<StyleNote> noteList;
 
+    public interface OnNoteClickListener {
+        void onNoteClick(int position);
+    }
+
+    private OnNoteClickListener listener;
+
+
+
     public NoteAdapter(List<StyleNote> noteList) {
         this.noteList = noteList;
+    }
+
+    public void setOnNoteClickListener(OnNoteClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,7 +47,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CLICK", "j'ai cliqué sur la note");
+                if (listener != null) {
+                    listener.onNoteClick(position);
+                }
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {

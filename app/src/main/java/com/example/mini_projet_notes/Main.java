@@ -1,37 +1,28 @@
 package com.example.mini_projet_notes;
 
 import android.annotation.SuppressLint;
-import android.graphics.Paint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import org.w3c.dom.Attr;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-public class Main extends AppCompatActivity {
+public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickListener {
 
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
     private List<StyleNote> noteList;
     private FloatingActionButton buttonAdd;
+
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -48,11 +39,17 @@ public class Main extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+
+        adapter.setOnNoteClickListener(this);
+
         addNote();
+    }
 
 
-
-
+    @Override
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
+        // permet de sauvegarder l'état du inputText
+        super.onSaveInstanceState(outState);
     }
 
     public void addNote(){
@@ -85,11 +82,18 @@ public class Main extends AppCompatActivity {
     public void resetAction(MenuItem item) {
         noteList.clear();
         adapter.notifyDataSetChanged();
-
     }
 
-    public void nouvelleNote(View view) {
-        Intent intent = new Intent(this, creationNote.class);
+    @Override
+    public void onNoteClick(int position) {
+        /*
+        Intent intent = new Intent(v.getContext(), EditNote.class);
         startActivityForResult(intent, 1);
+         */
+        Intent intent = new Intent(this, EditNote.class);
+        intent.putExtra("TITLE", noteList.get(position).getTitle());
+        intent.putExtra("CONTENT", noteList.get(position).getContent());
+        startActivity(intent);
     }
+
 }
