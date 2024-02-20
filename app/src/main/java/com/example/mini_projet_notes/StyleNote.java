@@ -3,13 +3,14 @@ package com.example.mini_projet_notes;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class StyleNote extends LinearLayout {
+public class StyleNote extends LinearLayout{
     private TextView textTitle;
     private TextView textContent;
 
@@ -52,10 +53,11 @@ public class StyleNote extends LinearLayout {
     }
 
     public String getTitle(){
-        return String.valueOf(this.textTitle);
+        return textTitle.getText().toString();
     }
 
     public String getContent(){
-        return String.valueOf(this.textContent);
+        return textContent.getText().toString();
     }
+
 }

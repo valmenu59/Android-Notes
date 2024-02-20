@@ -1,7 +1,9 @@
 package com.example.mini_projet_notes;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,14 +32,37 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteViewHolder holder, @SuppressLint("RecyclerView") int position) {
         StyleNote note = noteList.get(position);
         holder.textTitle.setText(note.getTitle());
         holder.textContent.setText(note.getContent());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("CLICK", "j'ai cliqué sur la note");
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Log.d("LONG_CLICK", "j'ai cliqué longtemps sur la note");
+                int clickedPosition = holder.getLayoutPosition();
+
+                noteList.remove(clickedPosition);
+                notifyItemRemoved(clickedPosition);
+
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return noteList.size();
     }
+
+
+
+
+
 }
