@@ -2,6 +2,7 @@ package com.example.mini_projet_notes;
 
 import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.mini_projet_notes.notes.StyleNote;
 
 import java.io.*;
 import java.util.List;
@@ -9,6 +10,12 @@ import java.util.List;
 public final class Save {
 
     private static final String SAVE_FILE = "note.txt";
+
+    /**
+     * Méthode statique qui permet d'écrire dans le fichier texte les notes créées
+     * @param activity : Activity en cours
+     * @param noteList : Liste des notes à sauvegarder
+     */
 
     public static void writeNotes(AppCompatActivity activity, List<StyleNote> noteList){
         try {
@@ -23,7 +30,11 @@ public final class Save {
         }
     }
 
-
+    /**
+     * Méthode statique qui permet de récupérer les notes écrites dans le fichier texte
+     * @param activity : Activity en cours
+     * @param noteList : Liste des notes à ajouter
+     */
 
 
     public static void readNotes(AppCompatActivity activity, List<StyleNote> noteList){

@@ -1,9 +1,10 @@
-package com.example.mini_projet_notes;
+package com.example.mini_projet_notes.notes;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.mini_projet_notes.R;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder {
     public TextView textTitle;

@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MINI_PROJET_NOTES">
 
-    <activity android:name="com.example.mini_projet_notes.Main"
+    <activity android:name="com.example.mini_projet_notes.activities.Main"
               android:exported="true">
 
         <intent-filter>
@@ -22,7 +22,7 @@
             <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
     </activity>
-    <activity android:name=".EditNote"
+    <activity android:name=".activities.EditNote"
             android:exported="true"/>
     </application>
 

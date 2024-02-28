@@ -1,4 +1,4 @@
-package com.example.mini_projet_notes;
+package com.example.mini_projet_notes.notes;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.example.mini_projet_notes.R;
 
 public class StyleNote extends LinearLayout{
     private TextView textTitle;

@@ -1,17 +1,15 @@
-package com.example.mini_projet_notes;
+package com.example.mini_projet_notes.notes;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.mini_projet_notes.R;
 
 import java.util.List;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     private List<StyleNote> noteList;

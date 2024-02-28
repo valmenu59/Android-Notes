@@ -3,4 +3,6 @@
     <string name="tout_supprimer">Tout supprimer</string>
     <string name="titre">Titre</string>
     <string name="contenu">Contenu</string>
+    <string name="titre_hint">Titre</string>
+    <string name="ecrivez_votre_note">Ecrivez votre note...</string>
 </resources>
