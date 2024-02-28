@@ -1,7 +1,9 @@
 package com.example.mini_projet_notes;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
     private NoteAdapter adapter;
     private List<StyleNote> noteList;
     private FloatingActionButton buttonAdd;
+    protected static final String NOTE_CHOISIE = "index";
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -42,6 +46,8 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
 
         adapter.setOnNoteClickListener(this);
 
+        Save.readNotes(Main.this, noteList);
+
         addNote();
     }
 
@@ -50,6 +56,24 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
     protected void onSaveInstanceState(@NotNull Bundle outState) {
         // permet de sauvegarder l'état du inputText
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Lisez les données sauvegardées localement avec SharedPreferences
+
+        SharedPreferences prefs = getSharedPreferences("NoteData", MODE_PRIVATE);
+        String savedTitle = prefs.getString("TITLE", "");
+        String savedContent = prefs.getString("CONTENT", "");
+
+        int index = prefs.getInt("INDEX", 0);
+
+        noteList.get(index).setTitle(savedTitle);
+        noteList.get(index).setContent(savedContent);
+
+        Save.writeNotes(Main.this, noteList);
+        adapter.notifyDataSetChanged();
     }
 
     public void addNote(){
@@ -67,6 +91,8 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
                 noteList.add(s1);
 
                 adapter.notifyDataSetChanged();
+
+                Save.writeNotes(Main.this, noteList);
             }
         });
     }
@@ -82,6 +108,7 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
     public void resetAction(MenuItem item) {
         noteList.clear();
         adapter.notifyDataSetChanged();
+        Save.writeNotes(Main.this, noteList);
     }
 
     @Override
@@ -93,7 +120,14 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
         Intent intent = new Intent(this, EditNote.class);
         intent.putExtra("TITLE", noteList.get(position).getTitle());
         intent.putExtra("CONTENT", noteList.get(position).getContent());
+        intent.putExtra(NOTE_CHOISIE, position);
         startActivity(intent);
     }
+
+    @Override
+    public void onNoteLongClick(int position) {
+        Save.writeNotes(Main.this, noteList);
+    }
+
 
 }

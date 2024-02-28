@@ -18,6 +18,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     public interface OnNoteClickListener {
         void onNoteClick(int position);
+        void onNoteLongClick(int position);
     }
 
     private OnNoteClickListener listener;
@@ -60,6 +61,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
                 noteList.remove(clickedPosition);
                 notifyItemRemoved(clickedPosition);
+                if (listener != null){
+                    listener.onNoteLongClick(position);
+                }
 
                 return true;
             }
