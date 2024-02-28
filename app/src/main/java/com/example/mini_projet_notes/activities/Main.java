@@ -102,7 +102,6 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
             public void onClick(View v) {
                 StyleNote s1 = new StyleNote(Main.this);
                 s1.init(Main.this, null);
-                s1.setTitle("Note n°" + noteList.size());
 
                 // Ajout de la note et notifie les changements
                 noteList.add(s1);

@@ -22,7 +22,15 @@ public final class Save {
             FileOutputStream fos = activity.openFileOutput(SAVE_FILE, Context.MODE_PRIVATE);
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(fos));
             for (StyleNote note : noteList) {
-                writer.println(note.getTitle() + "," + note.getContent());
+                String titre = note.getTitle();
+                String content = note.getContent();
+                if (note.getTitle().isEmpty()){
+                    titre = "⫬⫯⫲ῸΨ";
+                }
+                if (note.getContent().isEmpty()){
+                    content = "⫬⫯⫲ῸΨ";
+                }
+                writer.println(titre + "," + content);
             }
             writer.close();
         } catch (IOException e) {
@@ -46,7 +54,15 @@ public final class Save {
                 String[] parts = line.split(",");
                 String title = parts[0];
                 String content = parts[1];
-                // Créez une nouvelle note avec le titre et le contenu lus depuis le fichier
+
+                if (title.equals("⫬⫯⫲ῸΨ")){
+                    title = "";
+                }
+                if (content.equals("⫬⫯⫲ῸΨ")){
+                    content = "";
+                }
+
+                // Création d'une nouvelle note
                 StyleNote styleNote = new StyleNote(activity);
                 styleNote.init(activity, null);
                 styleNote.setTitle(title);
