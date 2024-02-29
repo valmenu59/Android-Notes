@@ -17,13 +17,13 @@ public final class Save {
 
     /**
      * Méthode statique qui permet d'écrire dans le fichier texte les notes créées
-     * @param activity : Activity en cours
+     * @param context : Context en cours
      * @param noteList : Liste des notes à sauvegarder
      */
 
-    public static void writeNotes(AppCompatActivity activity, List<StyleNote> noteList){
+    public static void writeNotes(Context context, List<StyleNote> noteList){
         try {
-            FileOutputStream fos = activity.openFileOutput(SAVE_FILE, Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(SAVE_FILE, Context.MODE_PRIVATE);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
 
             List<Note> notes = new ArrayList<>();

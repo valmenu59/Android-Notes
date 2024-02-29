@@ -1,6 +1,8 @@
 package com.example.mini_projet_notes.notes;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mini_projet_notes.R;
+import com.example.mini_projet_notes.Save;
 
 import java.util.List;
 
@@ -16,7 +19,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     public interface OnNoteClickListener {
         void onNoteClick(int position);
-        void onNoteLongClick(int position);
     }
 
     private OnNoteClickListener listener;
@@ -54,15 +56,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Log.d("LONG_CLICK", "j'ai cliqué longtemps sur la note");
-                int clickedPosition = holder.getLayoutPosition();
-
-                noteList.remove(clickedPosition);
-                notifyItemRemoved(clickedPosition);
-                if (listener != null){
-                    listener.onNoteLongClick(position);
-                }
-
+                new AlertDialog.Builder(v.getContext())
+                        .setTitle("Confirmation")
+                        .setMessage("Voulez-vous vraiment supprimer cette note ?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                int clickedPosition = holder.getLayoutPosition();
+                                noteList.remove(clickedPosition);
+                                notifyItemRemoved(clickedPosition);
+                                Save.writeNotes(holder.itemView.getContext(), noteList);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
                 return true;
             }
         });

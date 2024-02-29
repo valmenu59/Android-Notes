@@ -1,6 +1,8 @@
 package com.example.mini_projet_notes.activities;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -138,6 +141,7 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
      */
     @Override
     public void onNoteClick(int position) {
+
         Intent intent = new Intent(this, EditNote.class);
         intent.putExtra("TITLE", noteList.get(position).getTitle());
         intent.putExtra("CONTENT", noteList.get(position).getContent());
@@ -145,16 +149,7 @@ public class Main extends AppCompatActivity implements NoteAdapter.OnNoteClickLi
         startActivity(intent);
     }
 
-    /**
-     * Permet de faire une sauvegarde lorsqu'on fait un click long
-     * (en plus des autres actions qui sont dans NoteAdapter)
-     * @param position index de la note
-     */
 
-    @Override
-    public void onNoteLongClick(int position) {
-        Save.writeNotes(Main.this, noteList);
-    }
 
 
 }
