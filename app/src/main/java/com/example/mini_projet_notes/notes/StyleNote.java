@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.mini_projet_notes.R;
 
-public class StyleNote extends LinearLayout{
+import java.io.Serializable;
+
+public class StyleNote extends LinearLayout implements Serializable {
     private TextView textTitle;
     private TextView textContent;
 
