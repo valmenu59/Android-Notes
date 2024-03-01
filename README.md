@@ -10,7 +10,7 @@
 - Sauvegarde automatique des notes
 
 --------
-## Captures d'écrans
+## Captures d'écran
 
 ### Liste des notes
 
